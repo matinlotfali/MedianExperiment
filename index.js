@@ -8,6 +8,7 @@ let startType;
 let currentStep = -1;
 let trialStartTime;
 let trialNumbers;
+let readyInterval;
 
 let report = [];
 
@@ -67,14 +68,18 @@ function textClick(event) {
 
 function generateRandomNumbers(count) {
     let r = [];
-    for(let i =0; i<count; i++)
-        r.push(Math.floor(Math.random()*100));
+    for(let i =0; i<count; i++) {
+        let num;
+        do {
+            num = Math.floor(Math.random() * 100);
+        } while (findIndex(num, r) >= 0);
+        r.push(num);
+    }
     return r;
 }
 
 function generateTexts() {
     container.className = 'textView';
-    container.textContent = '';
     for(let i =0; i<trialNumbers.length; i++) {
         let element = document.createElement('div');
         element.className = 'text';
@@ -88,7 +93,6 @@ function generateTexts() {
 
 function generateBars() {
     container.className = 'barChart';
-    container.textContent = '';
     for(let i =0; i<trialNumbers.length; i++) {
         let element = document.createElement('div');
         element.className = 'bar';
@@ -110,29 +114,43 @@ function generateReport() {
     document.body.innerHTML = table;
 }
 
+function generateReadyText() {
+    readyInterval--;
+    if(readyInterval === 0) {
+        trialStartTime = new Date();
+        container.textContent = '';
+        if(currentStep < order.length) {
+            if (startType === '0')
+                generateTexts();
+            else if (startType === '1')
+                generateBars();
+        } else if(currentStep < order.length * 2) {
+            if (startType === '0')
+                generateBars();
+            else if (startType === '1')
+                generateTexts();
+        }
+    }
+    else {
+        container.className = 'textView';
+        container.innerHTML = 'Get Ready<br>' + readyInterval;
+        setTimeout(generateReadyText, 1000);
+    }
+}
+
 function nextTrial() {
     currentStep++;
 
     container.textContent = '';
     trialNumbers = generateRandomNumbers(order[currentStep%order.length]);
 
-    if(currentStep < order.length) {
-        alert('Showing new numbers.\nYou should click on the median number as fast as you can.\nPress OK when you are ready.');
-        if (startType === '0')
-            generateTexts();
-        else if (startType === '1')
-            generateBars();
-    } else if(currentStep < order.length * 2) {
-        alert('Showing new numbers.\nYou should click on the median number as fast as you can.\nPress OK when you are ready.');
-        if (startType === '0')
-            generateBars();
-        else if (startType === '1')
-            generateTexts();
-    } else {
+    if (currentStep === order.length * 2)
         generateReport();
+    else {
+        alert('Press OK when you are ready. then click on the median number.');
+        readyInterval = 4;
+        generateReadyText();
     }
-
-    trialStartTime = new Date();
 }
 
 function startButton() {

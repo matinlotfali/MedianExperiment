@@ -2,6 +2,8 @@
     width: 400px;
     height: 400px;
     border: 1px solid black;
+    margin: auto auto;
+    text-align: center;
 }
 
 .barChart {
@@ -37,6 +39,10 @@
     justify-content: center;
     height: 100%;
     gap: 10px;
+}
+
+table {
+    margin: auto auto;
 }
 
 td {
