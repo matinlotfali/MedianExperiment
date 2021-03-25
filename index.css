@@ -1,0 +1,44 @@
+#container {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+.barChart {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.textView {
+    display: flex;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bar {
+    background-color: black;
+    flex-grow: 1;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.text {
+    text-align: center;
+    cursor: pointer;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10px;
+}
+
+td {
+    border: 1px solid black;
+}
