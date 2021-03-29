@@ -43,8 +43,13 @@
 
 table {
     margin: auto auto;
+    margin-bottom: 30px;
 }
 
 td {
     border: 1px solid black;
+}
+
+body {
+    text-align: center;
 }
