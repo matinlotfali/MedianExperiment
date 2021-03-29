@@ -111,6 +111,7 @@ function generateReport() {
         table += '</tr>';
     }
     table += '</table>';
+    table += 'Please complete the following <a href="https://docs.google.com/forms/d/1ByLXo6R2WCkL9YECdFgSv4-YDZwS2u7rWV_Bhi5I6WM/prefill" target="_blank">survey</a>';
     document.body.innerHTML = table;
 }
 
@@ -144,8 +145,9 @@ function nextTrial() {
     container.textContent = '';
     trialNumbers = generateRandomNumbers(order[currentStep%order.length]);
 
-    if (currentStep === order.length * 2)
+    if (currentStep === order.length * 2){
         generateReport();
+    }
     else {
         alert('Press OK when you are ready. then click on the median number.');
         readyInterval = 4;
