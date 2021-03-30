@@ -111,7 +111,7 @@ function generateReport() {
         table += '</tr>';
     }
     table += '</table>';
-    table += 'Please complete the following <a href="https://docs.google.com/forms/d/1ByLXo6R2WCkL9YECdFgSv4-YDZwS2u7rWV_Bhi5I6WM/prefill" target="_blank">survey</a>';
+    table += 'Please complete the following <a href="https://forms.gle/KepbBzrjm1TzS8Lt7" target="_blank">survey</a>';
     document.body.innerHTML = table;
 }
 
